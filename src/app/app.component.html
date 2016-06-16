@@ -1,0 +1,15 @@
+<h1>{{ title }}</h1>
+<nav>
+  <a [routerLink]=" ['./Home'] ">Home</a>
+  <a [routerLink]=" ['./About'] ">About</a>
+</nav>
+
+<strong>Async data call return value:</strong>
+<pre>{{ data | json }}</pre>
+
+<strong>Router-outlet:</strong>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<blockquote>{{ server }}</blockquote>

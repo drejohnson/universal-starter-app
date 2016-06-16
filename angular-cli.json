@@ -1,0 +1,13 @@
+{
+  "project": {
+    "version": "0.0.1",
+    "name": "universal-app"
+  },
+  "apps": [
+    {"main": "src/main.browser.ts", "tsconfig": "tsconfig.json"}
+  ],
+  "defaults": {
+    "prefix": "app",
+    "sourceDir": "src"
+  }
+}
