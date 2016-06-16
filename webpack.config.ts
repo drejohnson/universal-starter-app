@@ -19,7 +19,7 @@ const NODE_MODULES = fs.readdirSync('node_modules').filter((name) => {
 const LOADERS = [
   {
     test: /\.ts$/,
-    loader: 'ts',
+    loader: 'awesome-typescript',
     exclude: [
       /\.(spec|e2e)\.ts$/,
       /node_modules/
@@ -34,9 +34,13 @@ const LOADERS = [
     test: /\.css$/,
     loader: 'to-string!css!postcss'
   }, {
-    test: /\.(eot|gif|jpe?g|png|svg|woff2?|ttf)$/,
+    test: /\.(jpe?g|png|gif|ico|svg)$/,
+    loader: 'url!image-webpack',
+    query: { limit: 10000, name: '/images/[name].[hash].[ext]' }
+  }, {
+    test: /\.(eof|woff|woff2|ttf|eot)$/,
     loader: 'url',
-    query: { limit: 10000 }
+    query: { limit: 10000, name: '/fonts/[name].[hash].[ext]' }
   }
 ];
 
@@ -110,7 +114,12 @@ const _COMMON_CONFIG = {
     ],
     loaders: LOADERS
   },
-  postcss: POSTCSS
+  postcss: POSTCSS,
+  // Configure settings for image-webpack-loader
+  imageWebpackLoader: {
+    // Do not minify images when webpack is in debug mode (development)
+    bypassOnDebug: DEBUG
+  },
 };
 
 // Client Config
@@ -129,11 +138,11 @@ const _CLIENT_CONFIG = {
     ...PLUGINS,
     // new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([{
-      from: 'src/icons',
+      from: 'icons',
       to: 'icons'
     }]),
     new CopyWebpackPlugin([{
-      from: 'src/images',
+      from: 'images',
       to: 'images'
     }])
   ],

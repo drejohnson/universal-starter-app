@@ -11,6 +11,11 @@ import {
 
 import { APP_BASE_HREF } from '@angular/common';
 
+// ngrx
+import { provideStore } from '@ngrx/store';
+import { provideRouter } from '@ngrx/router';
+
+// App Constants
 import * as APP_CONSTANTS from '../constants';
 
 import { AppComponent } from './app';

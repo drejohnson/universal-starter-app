@@ -10,15 +10,6 @@ import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 // import * as middleware from './middleware/index';
 
-// import * as configs from '../../webpack.config';
-// import * as webpack from '../../webpack.config';
-// const webpack = require('webpack');
-// const configs = require('../../webpack.config');
-
-// const CLIENT_CONFIG = configs.CLIENT_CONFIG;
-// const SERVER_CONFIG = configs.SERVER_CONFIG;
-
-
 // Angular 2
 import {enableProdMode} from '@angular/core';
 
