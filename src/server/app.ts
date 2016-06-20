@@ -8,6 +8,7 @@ import * as compress from 'compression';
 import * as cors from 'cors';
 import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
+import * as dotenv from 'dotenv';
 // import * as middleware from './middleware/index';
 
 // Angular 2

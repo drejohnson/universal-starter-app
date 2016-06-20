@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 
 import { HomeComponent } from './+home';
 import { AboutComponent } from './+about';
-import * as models from '../models';
 
 const template = require('./app.component.html');
 
@@ -16,6 +15,18 @@ const template = require('./app.component.html');
   ],
   providers: [
   ],
+  styles: [`
+    :host {
+      display: block;
+    }
+    h1 {
+      font-size: 62px;
+      margin: 0;
+    }
+    nav a {
+      text-transform: uppercase;
+    }
+  `],
   template
 })
 @RouteConfig([
@@ -25,7 +36,6 @@ const template = require('./app.component.html');
   { path: '/**', redirectTo: ['Home'] }
 ])
 export class AppComponent {
-  public genres: models.Channel[];
 
   title = 'My App';
   data = {};

@@ -1,7 +1,9 @@
-import { HomeComponent } from './+home';
-import { AboutComponent } from './+about';
+// Waiting for new router support
 
-export const AppRoutes = [
-  { index: true, component: HomeComponent },
-  { path: 'about', component: AboutComponent }
-];
+// import { HomeComponent } from './+home';
+// import { AboutComponent } from './+about';
+
+// export const AppRoutes = [
+//   { index: true, component: HomeComponent },
+//   { path: 'about', component: AboutComponent }
+// ];
