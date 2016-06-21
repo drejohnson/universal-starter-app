@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-const styles = require('./about.component.css');
-const template = require('./about.component.html');
-
 @Component({
   selector: 'app-about',
-  styles: [ styles ],
-  template
+  styleUrls: [ 'about.component.css' ],
+  templateUrl: 'about.component.html'
 })
 export class AboutComponent implements OnInit {
   title = 'About';

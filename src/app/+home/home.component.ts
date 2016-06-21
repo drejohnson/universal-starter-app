@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-
-const styles = require('./home.component.css');
-const template = require('./home.component.html');
+import { ExampleService } from '../shared/services/';
+import { Example } from '../shared/models/';
 
 @Component({
   selector: 'app-home',
-  styles: [ styles ],
-  template
+  providers: [ExampleService],
+  styleUrls: ['home.component.css' ],
+  templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
+  examples: Example[];
   title = 'Home';
 
-  constructor() {}
+  constructor(private exampleService: ExampleService) {}
 
   ngOnInit() {
+    this.examples = [];
+    this.exampleService.getExamples()
+      .subscribe(examples => this.examples = examples);
   }
 
 }

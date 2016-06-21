@@ -1,23 +1,23 @@
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Example } from '../models';
 
 @Injectable()
 export class ExampleService {
-  private API_PATH: string = 'https://example-api.com/api';
+  private API_PATH: string = 'http://swapi.co/api/films/';
 
   constructor(private http: Http) {}
 
-  searchExample(queryTitle: string): Observable<Example[]> {
-    return this.http.get(`${this.API_PATH}?q=${queryTitle}`)
-      .map(res => res.json().items);
+  getExamples(): Observable<Example[]> {
+    return this.http.get(`${this.API_PATH}`)
+      .map((response: Response) => <Example[]>response.json().results);
   }
 
-  retrieveExample(Id: string): Observable<Example> {
-    return this.http.get(`${this.API_PATH}/${Id}`)
-      .map(res => res.json());
+  getExample(id: number): Observable<Example> {
+    return this.http.get(`${this.API_PATH}/${id}`)
+      .map((response: Response) => <Example>response.json());
   }
 }

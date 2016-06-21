@@ -15,14 +15,11 @@ import { APP_BASE_HREF } from '@angular/common';
 import { provideStore } from '@ngrx/store';
 import { provideRouter } from '@ngrx/router';
 
-// App Constants
-import * as APP_CONSTANTS from '../constants';
-
 import { AppComponent } from './app';
 
 const bootloader = new Bootloader({
   platformProviders: [
-    {provide: ORIGIN_URL, useValue: APP_CONSTANTS.SITE_URL},
+    {provide: ORIGIN_URL, useValue: 'http://localhost:8080'},
     {provide: APP_BASE_HREF, useValue: '/'}
   ],
   async: true,
@@ -30,11 +27,11 @@ const bootloader = new Bootloader({
 });
 
 export function ngApp(req, res) {
-  const template = require('./main.html');
+  // const template = require('./main.html');
   let url = req.originalUrl || '/';
 
   const config = {
-    template,
+    templateUrl: 'main.html',
     directives: [AppComponent],
     providers: [
       {provide: REQUEST_URL, useValue: url},
