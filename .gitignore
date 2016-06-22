@@ -6,5 +6,7 @@
 npm-debug.log
 
 /dist/
+/log/
 
 .idea
+.env
