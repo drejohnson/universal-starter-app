@@ -7,7 +7,6 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 * our providers/directives/pipes
 */
 import { PLATFORM_PROVIDERS } from './platform/browser';
-import { ENV_PROVIDERS } from './platform/environment';
 import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 // AngularFire2
@@ -30,7 +29,6 @@ import { AppComponent, APP_PROVIDERS } from './app';
 export function ngApp() {
   return bootstrap(AppComponent, [
     ...PLATFORM_PROVIDERS,
-    ...ENV_PROVIDERS,
     ...APP_PROVIDERS,
     // provideRouter(AppRoutes),
     // defaultFirebase({

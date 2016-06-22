@@ -12,8 +12,8 @@ import {
 import { APP_BASE_HREF } from '@angular/common';
 
 // ngrx
-import { provideStore } from '@ngrx/store';
-import { provideRouter } from '@ngrx/router';
+// import { provideStore } from '@ngrx/store';
+// import { provideRouter } from '@ngrx/router';
 
 import { AppComponent } from './app';
 

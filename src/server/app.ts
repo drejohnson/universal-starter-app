@@ -15,7 +15,10 @@ import * as dotenv from 'dotenv';
 import {enableProdMode} from '@angular/core';
 
 // enable prod for faster renders
-enableProdMode();
+if (process.env.NODE_ENV === 'production') {
+  // Production
+  enableProdMode();
+}
 
 // Our API for demos only
 import { serverApi } from './api';
@@ -35,28 +38,9 @@ app.use(compress())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride())
   .use(logger('dev'))
-
-// if (DEV) {
-//   const configs = require('../../webpack.config');
-//   const webpack = require('webpack');
-//   let compiler = webpack(configs[0]);
-
-//   app.use(require("webpack-dev-middleware")(compiler, {
-//     headers: {'Access-Control-Allow-Origin': '*'},
-//     noInfo: true,
-//     publicPath: compiler.options.output.publicPath,
-//     stats: {
-//       colors: true
-//     }
-//   }))
-//   // .use(require("webpack-hot-middleware")(compiler))
-// }
-
   .use(express.static(path.join(__dirname, '../dist')))
-
   // Serve static files
   .get('/data.json', serverApi)
-
   // Routes with html5pushstate
   .use('/', ngApp)
   .use('/home', ngApp)
