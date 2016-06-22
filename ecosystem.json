@@ -1,0 +1,41 @@
+{
+  "name": "Angular Universal",
+  "script": "./dist/server.js",
+  "watch": "./dist",
+  "log_date_format": "YYYY-MM-DD HH:mm Z",
+  "error_file": "./logs/errors.log",
+  "out_file": "./logs/output.log",
+  "autorestart": true,
+  "source_map_support": true,
+  // "instances"  : 4,
+  // "exec_mode"  : "cluster",
+  // Environment variables injected when starting with --env production
+  // http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments
+  "env_production" : {
+    "NODE_ENV": "production"
+  },
+  // Deployment part
+  // Here you describe each environment
+  "deploy" : {
+    "production" : {
+      "user" : "node",
+      // Host
+      "host" : "194.83.XXX.X",
+      // Branch
+      "ref"  : "origin/master",
+      // Git repository to clone
+      "repo" : "git@github.com:repo.git",
+      // Path of the application on target servers
+      "path" : "/var/www/production",
+      // Commands to execute locally (on the same machine you deploy things)
+      // Can be multiple commands separated by the character ";"
+      "pre-deploy-local" : "echo 'This is a local executed command'",
+      // Commands to be executed on the server after the repo has been cloned
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production",
+      // Environment variables that must be injected in all applications on this env
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

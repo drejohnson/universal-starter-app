@@ -20,3 +20,6 @@ If you're looking for a SystemJS version of the repo look in the [systemjs branc
 ## Watch files
 * `npm run watch` to build your client app and start a web server
 
+## TODO
+* Use webpack/webpack-dev-middleware and webpack/webpack-hot-middleware for browser reloading
+

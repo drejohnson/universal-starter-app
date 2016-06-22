@@ -1,0 +1,19 @@
+2016-06-22 13:31 -04:00: Application running in production mode on port: 8080
+2016-06-22 13:31 -04:00: /data.json Cache Miss
+2016-06-22 13:31 -04:00: [0mGET /data.json [32m200 [0m12.651 ms - 335[0m
+2016-06-22 13:31 -04:00: [0mGET /home [32m200 [0m1775.366 ms - -[0m
+2016-06-22 13:31 -04:00: [0mGET /client.js [32m200 [0m6.149 ms - -[0m
+2016-06-22 13:31 -04:00: /data.json Cache Hit
+2016-06-22 13:31 -04:00: [0mGET /data.json [32m200 [0m0.942 ms - 335[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/favicon-16x16.png [32m200 [0m1.895 ms - 1126[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/favicon-96x96.png [32m200 [0m1.579 ms - 3795[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/android-chrome-192x192.png [32m200 [0m0.910 ms - 7682[0m
+2016-06-22 13:31 -04:00: /data.json Cache Hit
+2016-06-22 13:31 -04:00: [0mGET /data.json [32m200 [0m0.670 ms - 335[0m
+2016-06-22 13:31 -04:00: [0mGET /home [32m200 [0m1118.343 ms - -[0m
+2016-06-22 13:31 -04:00: [0mGET /client.js [36m304 [0m2.199 ms - -[0m
+2016-06-22 13:31 -04:00: /data.json Cache Hit
+2016-06-22 13:31 -04:00: [0mGET /data.json [36m304 [0m1.417 ms - -[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/favicon-16x16.png [36m304 [0m1.862 ms - -[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/favicon-96x96.png [36m304 [0m0.720 ms - -[0m
+2016-06-22 13:31 -04:00: [0mGET /icons/android-chrome-192x192.png [36m304 [0m1.005 ms - -[0m
