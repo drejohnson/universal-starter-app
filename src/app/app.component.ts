@@ -1,9 +1,11 @@
-import { Component, Directive, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Http } from '@angular/http';
-
-import { HomeComponent } from './+home';
-import { AboutComponent } from './+about';
 
 @Component({
   moduleId: __filename,
@@ -13,26 +15,10 @@ import { AboutComponent } from './+about';
   ],
   providers: [
   ],
-  styles: [`
-    :host {
-      display: block;
-    }
-    h1 {
-      font-size: 62px;
-      margin: 0;
-    }
-    nav a {
-      text-transform: uppercase;
-    }
-  `],
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: [ 'app.component.css' ]
 })
-@RouteConfig([
-  { path: '/', component: HomeComponent, name: 'Home', useAsDefault: true },
-  { path: '/home', component: HomeComponent, name: 'Home' },
-  { path: '/about', component: AboutComponent, name: 'About' },
-  { path: '/**', redirectTo: ['Home'] }
-])
+
 export class AppComponent {
 
   title = 'My App';

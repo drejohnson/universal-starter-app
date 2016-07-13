@@ -2,9 +2,9 @@
 import 'angular2-universal/polyfills';
 
 // Angular 2
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 // Angular 2 Universal
-import {prebootComplete} from 'angular2-universal';
+import { prebootComplete } from 'angular2-universal';
 
 // enable prod for faster renders
 if (process.env.NODE_ENV === 'production') {

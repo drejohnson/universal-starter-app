@@ -1,14 +1,14 @@
-// Angular 2 Universal
-import 'angular2-universal/polyfills';
 import {
   provide,
   REQUEST_URL,
   ORIGIN_URL,
-  NODE_ROUTER_PROVIDERS,
+  NODE_LOCATION_PROVIDERS,
   NODE_HTTP_PROVIDERS,
-  Bootloader
+  Bootloader,
+  isNode
 } from 'angular2-universal';
 
+import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 // ngrx
@@ -16,7 +16,11 @@ import { APP_BASE_HREF } from '@angular/common';
 // import { provideRouter } from '@ngrx/router';
 
 import { AppComponent } from './app';
+import { routes } from './app/app.routes';
 
+if (isNode) {
+  console.log('isNode: True')
+}
 const bootloader = new Bootloader({
   platformProviders: [
     {provide: ORIGIN_URL, useValue: 'http://localhost:8080'},
@@ -27,7 +31,6 @@ const bootloader = new Bootloader({
 });
 
 export function ngApp(req, res) {
-  // const template = require('./main.html');
   let url = req.originalUrl || '/';
 
   const config = {
@@ -35,8 +38,9 @@ export function ngApp(req, res) {
     directives: [AppComponent],
     providers: [
       {provide: REQUEST_URL, useValue: url},
-      ...NODE_ROUTER_PROVIDERS,
-      ...NODE_HTTP_PROVIDERS
+      provideRouter(routes),
+      ...NODE_HTTP_PROVIDERS,
+      ...NODE_LOCATION_PROVIDERS
     ]
   };
 

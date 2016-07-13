@@ -1,4 +1,4 @@
-export interface Example {
+export interface Swapi {
   title: string;
   episode_id: number;
   director: string;

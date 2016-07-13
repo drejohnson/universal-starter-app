@@ -38,13 +38,20 @@ app.use(compress())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(methodOverride())
   .use(logger('dev'))
-  .use(express.static(path.join(__dirname, '../dist')))
+  .use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}))
+  .use(express.static(path.join(__dirname, '../dist/client'), {index: false}))
   // Serve static files
   .get('/data.json', serverApi)
   // Routes with html5pushstate
   .use('/', ngApp)
   .use('/home', ngApp)
-  .use('/about', ngApp);
+  .use('/about', ngApp)
+  .get('*', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    const pojo = { status: 404, message: 'No Content' };
+    const json = JSON.stringify(pojo, null, 2);
+    res.status(404).send(json);
+  });
 
 export default app;
 

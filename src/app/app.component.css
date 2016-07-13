@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+h1 {
+  font-size: 62px;
+  margin: 0;
+}
+nav a {
+  text-transform: uppercase;
+}

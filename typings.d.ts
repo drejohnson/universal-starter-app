@@ -1,6 +1,3 @@
-// This is a temporary step until the Firebase typings are published to npm.
-/// <reference path="node_modules/angularfire2/firebase3.d.ts" />
-
 declare const ROOT_DIR: string;
 declare const SRC_DIR: string;
 declare const DIST_DIR: string;

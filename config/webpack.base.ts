@@ -35,12 +35,12 @@ const LOADERS = [
     loader: 'to-string!css!postcss'
   }, {
     test: /\.(jpe?g|png|gif|ico|svg)$/,
-    loader: 'url!image-webpack',
-    query: { limit: 10000, name: '/images/[name].[hash].[ext]' }
+    loader: 'url',
+    query: { limit: 10000, name: '/assets/images/[name].[hash].[ext]' }
   }, {
     test: /\.(eof|woff|woff2|ttf|eot)$/,
     loader: 'url',
-    query: { limit: 10000, name: '/fonts/[name].[hash].[ext]' }
+    query: { limit: 10000, name: '/assets/fonts/[name].[hash].[ext]' }
   }
 ];
 
@@ -52,11 +52,13 @@ const POSTCSS = function() {
   return [
     require('postcss-partial-import'),
     require('postcss-nested'),
+    require('postcss-conditionals'),
     require('postcss-mixins'),
     require('lost')(),
     require('postcss-cssnext')({
       browsers: AUTOPREFIXER_BROWSERS
-    })
+    }),
+    require('postcss-color-function')
   ]
 }
 
@@ -75,19 +77,10 @@ const PLUGINS = [
       debug: false
     }),
     new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8 : true,
-        keep_fnames: true
-      },
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      },
-      output: {
-        comments: false
-      },
-      sourceMap: false
+     beautify: false,
+      mangle: { screw_ie8 : true },
+      compress: { screw_ie8: true },
+      comments: false
     }),
     new CompressionPlugin({
       regExp: /\.css$|\.html$|\.js$|\.map$/,
@@ -108,30 +101,29 @@ const _COMMON_CONFIG = {
     extensions: ['', '.ts', '.js']
   },
   module: {
-    noParse: [
-      path.join(__dirname, 'zone.js', 'dist'),
-      path.join(__dirname, 'angular2', 'bundles')
+    preLoaders: [
+      { test: /\.js$/, loader: 'source-map-loader' }
     ],
     loaders: LOADERS
   },
   postcss: POSTCSS,
   // Configure settings for image-webpack-loader
-  imageWebpackLoader: {
-    // Do not minify images when webpack is in debug mode (development)
-    bypassOnDebug: DEBUG
-  },
+  // imageWebpackLoader: {
+  //   // Do not minify images when webpack is in debug mode (development)
+  //   bypassOnDebug: DEBUG
+  // },
 };
 
 // Client Config
 const _CLIENT_CONFIG = {
   target: 'web',
   entry: {
-    'client': './client.ts' // context is './src'
+    'client': helpers.root('src/client.ts') // context is './src'
   },
   output: {
-    path: helpers.root('dist'),
+    path: helpers.root('dist/client'),
     filename: '[name].js',
-    publicPath: helpers.root('dist'),
+    publicPath: helpers.root('dist/client'),
     chunkFilename: '[id].[name].js',
   },
   plugins: [
@@ -139,11 +131,11 @@ const _CLIENT_CONFIG = {
     // new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([{
       from: 'icons',
-      to: 'icons'
+      to: 'assets/icons'
     }]),
     new CopyWebpackPlugin([{
       from: 'images',
-      to: 'images'
+      to: 'assets/images'
     }])
   ],
   node: {
@@ -159,11 +151,11 @@ const _CLIENT_CONFIG = {
 const _SERVER_CONFIG = {
   target: 'node',
   entry: {
-    'server': './server/index.ts' // context is './src'
+    'server': helpers.root('src/server/index.ts') // context is './src'
   },
   output: {
-    path: helpers.root('dist'),
-    publicPath: helpers.root('dist'),
+    path: helpers.root('dist/server'),
+    publicPath: helpers.root('dist/server'),
     filename: '[name].js',
     chunkFilename: '[id].server.js',
     library: 'server',
@@ -172,9 +164,7 @@ const _SERVER_CONFIG = {
   plugins: [
     ...PLUGINS,
   ],
-  externals: [
-    NODE_MODULES.map(function(name) { return new RegExp('^' + name) }),
-  ],
+  externals: helpers.checkNodeImport,
   node: {
     global: true,
     __dirname: true,
