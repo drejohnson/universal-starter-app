@@ -33,7 +33,7 @@ const bootloader = new Bootloader({
 export function ngApp(req, res) {
   let url = req.originalUrl || '/';
 
-  const config = {
+  const AppConfig = {
     templateUrl: 'main.html',
     directives: [AppComponent],
     providers: [
@@ -44,6 +44,6 @@ export function ngApp(req, res) {
     ]
   };
 
-  bootloader.serializeApplication(config)
+  bootloader.serializeApplication(AppConfig)
   .then(html => res.send(html));
 }

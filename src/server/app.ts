@@ -1,5 +1,7 @@
 // the polyfills must be the first thing imported in node.js
 import 'angular2-universal/polyfills';
+// Angular 2
+import {enableProdMode} from '@angular/core';
 
 import * as path from 'path';
 import * as express from 'express';
@@ -10,9 +12,8 @@ import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 import * as dotenv from 'dotenv';
 // import * as middleware from './middleware/index';
-
-// Angular 2
-import {enableProdMode} from '@angular/core';
+// Our API for demos only
+import { serverApi } from './api';
 
 // enable prod for faster renders
 if (process.env.NODE_ENV === 'production') {
@@ -20,10 +21,14 @@ if (process.env.NODE_ENV === 'production') {
   enableProdMode();
 }
 
-// Our API for demos only
-import { serverApi } from './api';
-
 import { ngApp } from '../main.node';
+
+dotenv.config({ silent: true });
+
+const {
+  SOME_CLIENT_ID,
+  SOME_CLIENT_SECRET,
+} = process.env;
 
 const DEV = process.env.NODE_ENV !== 'production';
 
