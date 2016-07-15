@@ -4,7 +4,7 @@ import * as helpers from './helpers';
 
 const webpack = require('webpack');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin.js');
-const { ForkCheckerPlugin } = require('awesome-typescript-loader');
+const { ForkCheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -13,7 +13,7 @@ module.exports = env => {
   const ifProd = plugin => addPlugin(env.prod, plugin);
   const removeEmpty = array => array.filter(i => !!i);
 
-  const common_plugins = removeEmpty([
+  const commonPlugins = removeEmpty([
     ifProd(new webpack.optimize.DedupePlugin()),
 
     ifProd(new webpack.LoaderOptionsPlugin({
@@ -48,7 +48,10 @@ module.exports = env => {
     resolve: {
       root: helpers.root('src'),
       modulesDirectories: ['node_modules'],
-      extensions: ['', '.ts', '.js']
+      extensions: ['', '.ts', '.js'],
+      plugins: [
+        new TsConfigPathsPlugin(/* { tsconfig, compiler } */)
+      ]
     },
     module: {
       preLoaders: [
@@ -108,7 +111,7 @@ module.exports = env => {
       pathinfo: !env.prod
     },
     plugins: [
-      ...common_plugins,
+      ...commonPlugins,
       // new webpack.HotModuleReplacementPlugin(),
       new CopyWebpackPlugin([{
         from: 'icons',
@@ -142,7 +145,7 @@ module.exports = env => {
       libraryTarget: 'commonjs2'
     },
     plugins: [
-      ...common_plugins,
+      ...commonPlugins,
     ],
     externals: helpers.checkNodeImport,
     node: {

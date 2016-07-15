@@ -19,7 +19,7 @@ import { AppComponent } from './app';
 import { routes } from './app/app.routes';
 
 if (isNode) {
-  console.log('isNode: True')
+  console.log('isNode: True');
 }
 const bootloader = new Bootloader({
   platformProviders: [

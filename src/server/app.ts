@@ -1,7 +1,7 @@
 // the polyfills must be the first thing imported in node.js
 import 'angular2-universal/polyfills';
 // Angular 2
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 import * as path from 'path';
 import * as express from 'express';
