@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
     "paths": [],
     "types": [
       "core-js",
-      "node"
+      "node",
+      "isomorphic-fetch"
     ]
   },
   "exclude": [

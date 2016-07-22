@@ -1,0 +1,6 @@
+{
+  "name": "universal-starter",
+  "dependencies": {
+    "graphql": "registry:npm/graphql#0.5.0+20160602041655"
+  }
+}

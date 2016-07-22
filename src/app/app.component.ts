@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component({
@@ -13,30 +13,14 @@ import { Http } from '@angular/http';
   directives: [
     ...ROUTER_DIRECTIVES
   ],
-  providers: [
-  ],
-  templateUrl: 'app.component.html',
-  styleUrls: [ 'app.component.css' ]
+  encapsulation: ViewEncapsulation.Native,
+  styleUrls: [ 'app.component.css' ],
+  templateUrl: 'app.component.html'
 })
 
 export class AppComponent {
+  title = 'Universal App';
 
-  title = 'My App';
-  data = {};
-  server: string;
-
-  constructor(public http: Http) {}
-
-  ngOnInit() {
-    // limit the use of setTimeouts
-    setTimeout(() => {
-      this.server = 'This was rendered from the server!';
-    }, 10);
-
-    // use services for http calls
-    this.http.get('/data.json')
-      .subscribe(res => {
-        this.data = res.json();
-      });
-  }
+  constructor(
+    private http: Http) {}
 }

@@ -12,15 +12,11 @@ import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 // ngrx
-// import { provideStore } from '@ngrx/store';
-// import { provideRouter } from '@ngrx/router';
+import { provideStore } from '@ngrx/store';
 
 import { AppComponent } from './app';
 import { routes } from './app/app.routes';
 
-if (isNode) {
-  console.log('isNode: True');
-}
 const bootloader = new Bootloader({
   platformProviders: [
     {provide: ORIGIN_URL, useValue: 'http://localhost:8080'},

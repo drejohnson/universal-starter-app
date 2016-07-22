@@ -1,6 +1,6 @@
 import { Chance } from 'chance';
 
-var chance = new Chance();
+const chance = new Chance();
 
 // Our API for demos only
 export const fakeDataBase = {

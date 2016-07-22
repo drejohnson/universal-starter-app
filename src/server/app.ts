@@ -6,6 +6,7 @@ import { enableProdMode } from '@angular/core';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 import * as compress from 'compression';
 import * as cors from 'cors';
 import * as methodOverride from 'method-override';
@@ -25,11 +26,6 @@ import { ngApp } from '../main.node';
 
 dotenv.config({ silent: true });
 
-const {
-  SOME_CLIENT_ID,
-  SOME_CLIENT_SECRET,
-} = process.env;
-
 const DEV = process.env.NODE_ENV !== 'production';
 
 const app = express();
@@ -41,6 +37,7 @@ app.use(compress())
   .use(cors())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+  .use(cookieParser())
   .use(methodOverride())
   .use(logger('dev'))
   .use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}))

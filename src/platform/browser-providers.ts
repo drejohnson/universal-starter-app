@@ -9,13 +9,13 @@ import { HTTP_PROVIDERS } from '@angular/http';
 // Angular 2 Router
 import { provideRouter } from '@angular/router';
 // Angular 2 forms
-// import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 // Angular 2 Material
 // TODO(gdi2290): replace with @angular2-material/all
 // import { MATERIAL_PROVIDERS } from './browser/angular2-material2';
 
-import { routes } from '../app/app.routes';
+import { APP_ROUTER_PROVIDERS } from '../app/app.routes';
 
 /*
 * Application Providers/Directives/Pipes
@@ -23,12 +23,10 @@ import { routes } from '../app/app.routes';
 */
 export const APPLICATION_PROVIDERS = [
   // new Angular 2 forms
-  // disableDeprecatedForms(),
-  // provideForms(),
-
-  provideRouter(routes),
+  disableDeprecatedForms(),
+  provideForms(),
   ...HTTP_PROVIDERS,
-  // ...MATERIAL_PROVIDERS
+  ...APP_ROUTER_PROVIDERS
 ];
 
 export const PROVIDERS = [
