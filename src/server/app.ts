@@ -13,6 +13,7 @@ import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 import * as dotenv from 'dotenv';
 // import * as middleware from './middleware/index';
+
 // Our API for demos only
 import { serverApi } from './api';
 
@@ -33,6 +34,7 @@ const app = express();
 app.use(compress())
   .set('env', process.env.NODE_ENV || 'development')
   .set('port', process.env.PORT || 8080)
+  .set('graphQLPort', process.env.GRAPHQL_PORT || 8888)
   .options('*', cors())
   .use(cors())
   .use(bodyParser.json())

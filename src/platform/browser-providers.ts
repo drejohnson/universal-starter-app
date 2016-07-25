@@ -11,6 +11,10 @@ import { provideRouter } from '@angular/router';
 // Angular 2 forms
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
+import {
+  APOLLO_PROVIDERS
+} from 'angular2-apollo';
+
 // Angular 2 Material
 // TODO(gdi2290): replace with @angular2-material/all
 // import { MATERIAL_PROVIDERS } from './browser/angular2-material2';
@@ -26,7 +30,8 @@ export const APPLICATION_PROVIDERS = [
   disableDeprecatedForms(),
   provideForms(),
   ...HTTP_PROVIDERS,
-  ...APP_ROUTER_PROVIDERS
+  ...APP_ROUTER_PROVIDERS,
+  ...APOLLO_PROVIDERS
 ];
 
 export const PROVIDERS = [
